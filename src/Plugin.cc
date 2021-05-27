@@ -8,6 +8,7 @@
 namespace plugin { namespace Demo_opcua { Plugin plugin; } }
 
 using namespace plugin::Demo_opcua;
+using namespace zeek;
 
 zeek::plugin::Configuration Plugin::Configure()
 	{

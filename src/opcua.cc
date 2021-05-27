@@ -3,12 +3,13 @@
 #include "opcua.h"
 
 #include "analyzer/protocol/tcp/TCP_Reassembler.h"
+#include "zeek/util.h"
 
 #include "Reporter.h"
 
 #include "events.bif.h"
 
-using namespace analyzer::Demo_opcua;
+using namespace zeek::analyzer::Demo_opcua;
 
 opcua_Analyzer::opcua_Analyzer(Connection* c)
 
@@ -61,7 +62,7 @@ void opcua_Analyzer::DeliverStream(int len, const u_char* data, bool orig)
 		}
 	catch ( const binpac::Exception& e )
 		{
-		ProtocolViolation(fmt("Binpac exception: %s", e.c_msg()));
+		ProtocolViolation(zeek::util::fmt("Binpac exception: %s", e.c_msg()));
 		}
 	}
 

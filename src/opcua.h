@@ -5,11 +5,11 @@
 #include "events.bif.h"
 
 
-#include "analyzer/protocol/tcp/TCP.h"
+#include "zeek/analyzer/protocol/tcp/TCP.h"
 
 #include "opcua_pac.h"
 
-namespace analyzer { namespace Demo_opcua {
+namespace zeek { namespace analyzer { namespace Demo_opcua {
 
 class opcua_Analyzer: public tcp::TCP_ApplicationAnalyzer
 {
@@ -35,4 +35,4 @@ protected:
 	bool had_gap;
 	};
 
-} } // namespace analyzer::*
+} } } // namespace analyzer::*

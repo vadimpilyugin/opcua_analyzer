@@ -5,7 +5,7 @@
 #  - opcua-analyzer.pac: describes the opcua analyzer code
 
 %include binpac.pac
-%include bro.pac
+%include zeek.pac
 
 %extern{
 	#include "events.bif.h"
@@ -17,7 +17,7 @@ analyzer opcua withcontext {
 };
 
 # Our connection consists of two flows, one in each direction.
-connection opcua_Conn(bro_analyzer: BroAnalyzer) {
+connection opcua_Conn(zeek_analyzer: ZeekAnalyzer) {
 	upflow   = opcua_Flow(true);
 	downflow = opcua_Flow(false);
 };
@@ -27,14 +27,7 @@ connection opcua_Conn(bro_analyzer: BroAnalyzer) {
 # Now we define the flow:
 flow opcua_Flow(is_orig: bool) {
 
-	# ## TODO: Determine if you want flowunit or datagram parsing:
-
-	# Using flowunit will cause the anlayzer to buffer incremental input.
-	# This is needed for &oneline and &length. If you don't need this, you'll
-	# get better performance with datagram.
-
-	# flowunit = opcua_PDU(is_orig) withcontext(connection, this);
-	datagram = opcua_PDU(is_orig) withcontext(connection, this);
+	flowunit = opcua_GenericMsg(is_orig) withcontext(connection, this);
 
 };
 
