@@ -1,0 +1,9 @@
+[package]
+description = opcua Protocol Analyzer for Zeek
+credits = vadimpilyugin@gmail.com
+tags = network, evil, rfc3514
+
+test_command = cd tests && make
+
+build_command = ./configure && make
+script_dir = ./scripts
